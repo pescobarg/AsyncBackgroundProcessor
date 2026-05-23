@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  namespace: asyncbackgroundprocessor
+spec:
+  selector:
+    app: redis
+  ports:
+    - port: 6379
+      targetPort: 6379
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: asyncbackgroundprocessor
+spec:
+  selector:
+    app: postgres
+  ports:
+    - port: 5432
+      targetPort: 5432
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: asyncbackgroundprocessor-api-service
+  namespace: asyncbackgroundprocessor
+spec:
+  type: NodePort
+  selector:
+    app: asyncbackgroundprocessor-api
+  ports:
+    - port: 8000
+      targetPort: 8000
+      nodePort: 30080
