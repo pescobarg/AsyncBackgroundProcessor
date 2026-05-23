@@ -1,0 +1,19 @@
+namespace: asyncbackgroundprocessor
+api:
+  name: asyncbackgroundprocessor-api
+  image: asyncbackgroundprocessor-api
+  replicas: 2
+  port: 8000
+worker:
+  name: asyncbackgroundprocessor-worker
+  image: asyncbackgroundprocessor-worker
+  replicas: 2
+postgres:
+  image: postgres:16-alpine
+  db: AsyncBackgroundProcessor
+  user: GenericUser
+  password: GenericUser
+  port: 5432
+redis:
+  image: redis:7-alpine
+  port: 6379
